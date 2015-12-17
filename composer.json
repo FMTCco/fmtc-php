@@ -1,0 +1,13 @@
+{
+    "name": "fmtc/fmtc",
+    "description": "A PHP package to interface with the FMTC datafeed.",
+    "authors": [
+        {
+            "name": "Caleb Porzio",
+            "email": "caleb@fmtc.co"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^5.1"
+    }
+}
