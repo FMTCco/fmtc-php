@@ -1,6 +1,6 @@
 {
-    "name": "fmtc/fmtc",
-    "description": "A PHP package to interface with the FMTC datafeed.",
+    "name": "fmtc/fmtc-php",
+    "description": "A PHP package to interface with the FMTC Api",
     "authors": [
         {
             "name": "Caleb Porzio",
