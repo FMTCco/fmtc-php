@@ -2,6 +2,7 @@
 namespace Fmtc;
 
 use Fmtc\Feeds\DealFeed;
+use Fmtc\Feeds\ApiFeed;
 use Fmtc\Feeds\MerchantFeed;
 use Fmtc\Feeds\CategoryFeed;
 use Fmtc\Feeds\TypeFeed;
@@ -21,6 +22,11 @@ class Fmtc
 	public function database()
 	{
 		return new Database;
+	}
+
+	public function api()
+	{
+		return new ApiFeed($this->config['api_key']);
 	}
 
 	public function dealFeed()

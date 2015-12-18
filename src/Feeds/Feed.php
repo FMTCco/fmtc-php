@@ -12,9 +12,9 @@ abstract class Feed
 		$this->key = $key;
 	}
 
-	public function fetchFull()
+	public function fetchFull($options = [])
 	{
-		$url = $this->buildUrl();
+		$url = $this->buildUrl($options);
 
 		return $this->getJson($url);
 	}

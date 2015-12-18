@@ -106,5 +106,8 @@ $fmtc->types()->getBySearch($searchString);
 $fmtc->networks()->get($networkSlug);
 $fmtc->networks()->all();
 $fmtc->networks()->getBySearch($searchString);
+
+// Custom Fmtc Url
+$fmtc->api()->fetchUrl($url, [$options]);
 ```
 
