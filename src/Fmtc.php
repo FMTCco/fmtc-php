@@ -13,6 +13,9 @@ class Fmtc
 {
 	protected $config;
 
+	/**
+	 * Initialize Class
+	 */
 	public function __construct($config)
 	{
 		$this->establishConnection($config);
