@@ -54,9 +54,9 @@ class DealFeed extends Feed
 		$this->removeDeals($removeQueue);
 
 		//---- debugging
-		debug($removeCount . ' removed');
-		debug($insertCount . ' inserted');
-		debug($updateCount . ' updated');
+		// debug($removeCount . ' removed');
+		// debug($insertCount . ' inserted');
+		// debug($updateCount . ' updated');
 		//----- 
 		
 		return true;
@@ -108,9 +108,9 @@ class DealFeed extends Feed
 		}
 
 		//---- debugging
-		debug($removeCount . ' removed');
-		debug($insertCount . ' inserted');
-		debug($updateCount . ' updated');
+		// debug($removeCount . ' removed');
+		// debug($insertCount . ' inserted');
+		// debug($updateCount . ' updated');
 		//----- 
 		
 		return true;

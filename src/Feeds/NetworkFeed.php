@@ -43,8 +43,8 @@ class NetworkFeed extends Feed
 		}
 
 		//---- debugging
-		debug($removeCount . ' removed');
-		debug($insertCount . ' inserted');
+		// debug($removeCount . ' removed');
+		// debug($insertCount . ' inserted');
 		//----- 
 		
 		return true;

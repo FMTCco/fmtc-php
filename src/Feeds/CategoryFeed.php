@@ -42,8 +42,8 @@ class CategoryFeed extends Feed
 			DB::table('categories')->where('cSlug', $categoryId)->delete();
 		}
 		//---- debugging
-		debug($removeCount . ' removed');
-		debug($insertCount . ' inserted');
+		// debug($removeCount . ' removed');
+		// debug($insertCount . ' inserted');
 		//----- 
 		
 		return true;
