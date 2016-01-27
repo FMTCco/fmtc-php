@@ -14,7 +14,7 @@ class Fmtc
 	protected $config;
 
 	/**
-	 * Initialize Class
+	 * Initialize The Base Fmtc Class.
 	 */
 	public function __construct($config)
 	{
