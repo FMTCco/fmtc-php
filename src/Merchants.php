@@ -16,7 +16,9 @@ class Merchants
 
 	public function all()
 	{
-		$merchants = DB::table('merchants')->get();
+		$merchants = DB::table('merchants')
+						->orderBy('cName')
+						->get();
 
 		return $merchants;
 	}
