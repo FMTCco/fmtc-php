@@ -63,10 +63,10 @@ class Migration
 		    	$table->string('dtEndDate', 25);
 		    	$table->string('cLastUpdated', 25);
 		    	$table->string('cCreated', 25);
-		    	$table->string('cAffiliateURL', 219);
-		    	$table->string('cDirectURL', 10);
-		    	$table->string('cSkimlinksURL', 227);
-		    	$table->string('cFMTCURL', 55);
+		    	$table->string('cAffiliateURL', 255);
+		    	$table->string('cDirectURL', 255);
+		    	$table->string('cSkimlinksURL',255);
+		    	$table->string('cFMTCURL', 255);
 		    	$table->decimal('fSalePrice', 6, 2);
 		    	$table->decimal('fWasPrice', 6, 2);
 		    	$table->decimal('fDiscount', 5, 2);
