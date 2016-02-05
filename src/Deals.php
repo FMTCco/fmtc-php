@@ -83,6 +83,7 @@ class Deals
 	public function getBaseQuery($limit = false, $offset = 0)
 	{
 		$query = DB::table('deals')
+					->where('dtEndDate','>=',date('Y-m-d H:i:s'))
 					->orderBy('fRating', 'desc');
 
 		if ($limit !== false) {
