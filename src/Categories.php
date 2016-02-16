@@ -14,6 +14,15 @@ class Categories
 		return ($category) ? $category : false;
 	}
 
+	public function getByID($id)
+	{
+		$category = DB::table('categories')
+						->where('id', $id)
+						->first();
+
+		return ($category) ? $category : false;
+	}
+
 	public function all()
 	{
 		$categories = DB::table('categories')->get();
