@@ -11,7 +11,7 @@ class Categories
 						->where('cSlug', $slug)
 						->first();
 
-		return ($category) ? $category : false;
+		return $category;
 	}
 
 	public function getByID($id)
@@ -20,7 +20,7 @@ class Categories
 						->where('id', $id)
 						->first();
 
-		return ($category) ? $category : false;
+		return $category;
 	}
 
 	public function all()
