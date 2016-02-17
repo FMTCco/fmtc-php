@@ -11,7 +11,16 @@ class Categories
 						->where('cSlug', $slug)
 						->first();
 
-		return ($category) ? $category : false;
+		return $category;
+	}
+
+	public function getByID($id)
+	{
+		$category = DB::table('categories')
+						->where('id', $id)
+						->first();
+
+		return $category;
 	}
 
 	public function all()
