@@ -35,6 +35,15 @@ class CategoryFeed extends Feed
 			$jsonCategoryIds[] = $category['cSlug'];
 		}
 
+		// Our feed includes the parent relationships as slugs, but we're going to work with them
+		// as IDs from now on, so set the nParentID for all categories that have a cParent set.
+		foreach($categories as $category) {
+			if($category['cParent']) {
+				$parent = DB::table('categories')->where('cSlug', $category['cParent'])->first();
+				DB::table('categories')->where('cParent', $category['cParent'])->update(['nParentID' => $parent->id]);
+			}
+		}
+
 		// remove old categories showing up in the database but not in the new merchant feed.
 		$removeQueue = array_diff(array_keys($dbCategories), $jsonCategoryIds);
 		$removeCount = count($removeQueue);

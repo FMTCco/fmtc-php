@@ -26,6 +26,7 @@ class Migration
 			    $table->increments('id');
 			    $table->string('cSlug', 27);
 			    $table->string('cName', 29);
+			    $table->integer('nParentID')->unsigned();
 			    $table->string('cParent', 18);
 			    $table->timestamps();
 			});
