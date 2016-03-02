@@ -115,6 +115,7 @@ class Deals
 		$deals = $deals->each(function($deal) use ($categories, $types) {
 			$deal->aCategories = $categories->where('nCouponID', $deal->nCouponID)->toArray();
 			$deal->aTypes = $types->where('nCouponID', $deal->nCouponID)->toArray();
+			$deal->cFMTCURL = $this->getDealURL($deal);
 		});
 
 		return $deals->toArray();	
@@ -134,6 +135,13 @@ class Deals
 							->join('types', 'types.cSlug', '=', 'deals_types.cTypeSlug')
 							->get();
 
+		$deal->cFMTCURL = $this->getDealURL($deal);
 		return $deal;
+	}
+
+	protected function getDealURL($deal) {
+		// Convert "http://fmtc.co/XXX/YYY" to "/outbound/XXX/YYY", and we'll use .htaccess
+		// and robots.txt on /outbound/ to prevent bots from clogging up all our analytics.
+		return preg_replace("/^http:\/\/fmtc.co/", "/outbound", $deal->cFMTCURL);
 	}
 }
