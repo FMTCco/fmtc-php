@@ -61,6 +61,7 @@ abstract class Feed
 
 	protected function getJson($url)
 	{
+		ini_set('default_socket_timeout', 6000); // Increase timeout so the larger API calls don't fail.
 		return file_get_contents($url);
 	}
 
