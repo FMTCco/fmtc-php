@@ -28,7 +28,8 @@ class Migration
 			    $table->string('cName', 29);
 			    $table->integer('nParentID')->unsigned();
 			    $table->string('cParent', 18);
-			    $table->timestamps();
+				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			});
 		}
 	}
@@ -40,7 +41,8 @@ class Migration
 				$table->increments('id');
 				$table->string('cSlug', 27);
 				$table->string('cName', 29);
-				$table->timestamps();
+				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			});
 		}
 	}
@@ -77,7 +79,8 @@ class Migration
 		    	$table->string('aBrands');
 		    	$table->string('aLocal');
 		    	$table->boolean('bStarred', 1);
-		    	$table->timestamps();
+				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			});
 		}
 	}
@@ -89,7 +92,8 @@ class Migration
 				$table->increments('id');
 				$table->integer('nCouponID');
 				$table->string('cCategorySlug', 50);
-				$table->timestamps();
+				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			});
 		}
 	}
@@ -101,7 +105,8 @@ class Migration
 				$table->increments('id');
 				$table->integer('nCouponID');
 				$table->string('cTypeSlug', 50);
-				$table->timestamps();
+				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			});
 		}
 	}
@@ -140,7 +145,8 @@ class Migration
 				$table->string('aPaymentOptions');
 				$table->string('cCustomMerchantLogo', 10);
 				$table->string('cCustomMerchantDescription', 10);
-				$table->timestamps();
+				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			});
 		}
 	}
