@@ -23,11 +23,11 @@ class Migration
 		if (! DB::schema()->hasTable('categories')) {
 			DB::schema()->create('categories', function($table)
 			{
-			    $table->increments('id');
-			    $table->string('cSlug', 27);
-			    $table->string('cName', 29);
-			    $table->integer('nParentID')->unsigned();
-			    $table->string('cParent', 18);
+				$table->increments('id');
+				$table->string('cSlug', 27);
+				$table->string('cName', 29);
+				$table->integer('nParentID')->unsigned();
+				$table->string('cParent', 18);
 				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			});
@@ -51,34 +51,34 @@ class Migration
 	{
 		if (! DB::schema()->hasTable('deals')) {
 			DB::schema()->create('deals', function($table) {
-			    $table->increments('id');
-		    	$table->integer('nCouponID');
-		    	$table->string('cMerchant', 15);
-		    	$table->integer('nMerchantID');
-		    	$table->integer('nMasterMerchantID');
-		    	$table->string('cNetwork', 3);
-		    	$table->string('cStatus', 7);
-		    	$table->string('cLabel', 250);
-		    	$table->string('cImage', 88);
-		    	$table->string('cRestrictions', 100);
-		    	$table->string('cCode', 8);
-		    	$table->string('dtStartDate', 25);
-		    	$table->string('dtEndDate', 25);
-		    	$table->string('cLastUpdated', 25);
-		    	$table->string('cCreated', 25);
-		    	$table->string('cAffiliateURL', 255);
-		    	$table->string('cDirectURL', 255);
-		    	$table->string('cSkimlinksURL',255);
-		    	$table->string('cFMTCURL', 255);
-		    	$table->decimal('fSalePrice', 6, 2);
-		    	$table->decimal('fWasPrice', 6, 2);
-		    	$table->decimal('fDiscount', 5, 2);
-		    	$table->integer('nPercent');
-		    	$table->decimal('fThreshold', 4, 2);
-		    	$table->decimal('fRating', 5, 2);
-		    	$table->string('aBrands');
-		    	$table->string('aLocal');
-		    	$table->boolean('bStarred', 1);
+				$table->increments('id');
+				$table->integer('nCouponID');
+				$table->string('cMerchant', 15);
+				$table->integer('nMerchantID');
+				$table->integer('nMasterMerchantID');
+				$table->string('cNetwork', 3);
+				$table->string('cStatus', 7);
+				$table->string('cLabel', 250);
+				$table->string('cImage', 88);
+				$table->string('cRestrictions', 100);
+				$table->string('cCode', 8);
+				$table->string('dtStartDate', 25);
+				$table->string('dtEndDate', 25);
+				$table->string('cLastUpdated', 25);
+				$table->string('cCreated', 25);
+				$table->string('cAffiliateURL', 255);
+				$table->string('cDirectURL', 255);
+				$table->string('cSkimlinksURL',255);
+				$table->string('cFMTCURL', 255);
+				$table->decimal('fSalePrice', 6, 2);
+				$table->decimal('fWasPrice', 6, 2);
+				$table->decimal('fDiscount', 5, 2);
+				$table->integer('nPercent');
+				$table->decimal('fThreshold', 4, 2);
+				$table->decimal('fRating', 5, 2);
+				$table->string('aBrands');
+				$table->string('aLocal');
+				$table->boolean('bStarred', 1);
 				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 			});
