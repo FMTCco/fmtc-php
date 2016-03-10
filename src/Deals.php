@@ -13,7 +13,8 @@ class Deals
 					->first();
 
 		// return deal if found, if not return false
-		return ($deal) ? $this->formatDealForReturn($deal) : false;
+		// return ($deal) ? $this->formatDealForReturn($deal) : false;
+		return $deal;
 	}
 
 	public function all($limit = false, $offset = 0)
@@ -25,6 +26,17 @@ class Deals
 
 		return $this->formatDealsForReturn($deals);
 	}
+
+	public function getCountByCategorySlug($slug, $limit = false, $offset = 0)
+        {
+                $query = $this->getBaseQuery($limit, $offset);
+		$count = $query->select(DB::raw('count(*) as deal_count'))
+               				->where('deals_categories.cCategorySlug', $slug)
+                                        ->join('deals_categories', 'deals_categories.nCouponID', '=', 'deals.nCouponID')
+                                        ->first();
+		
+		return $count;
+        }
 
 	public function getByCategorySlug($slug, $limit = false, $offset = 0)
 	{
@@ -52,7 +64,7 @@ class Deals
 	{
 		$query = $this->getBaseQuery($limit, $offset);
 
-		$deals = $query->where('nMerchantID', $id)->get();
+		$deals = $query->where('deals.nMerchantID', $id)->get();
 
 		return $this->formatDealsForReturn($deals);
 	}
@@ -83,6 +95,7 @@ class Deals
 	public function getBaseQuery($limit = false, $offset = 0)
 	{
 		$query = DB::table('deals')
+					->join('merchants','deals.nMerchantID','=','merchants.nMerchantID')
 					->where('dtEndDate','>=',date('Y-m-d H:i:s'))
 					->orderBy('fRating', 'desc');
 
