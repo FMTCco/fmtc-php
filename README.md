@@ -7,6 +7,18 @@ This is the official php package to interface with FMTC's API.
 * Process full and incremental feeds and store in database
 * Retreive records from the database with an easy to use API
 
+**Installation**
+```php
+composer require fmtcco/fmtc-php
+```
+
+**Requirements**
+* PHP >5.4
+* You may need to increase timeout so the larger API calls don't fail.
+```php
+ini_set('default_socket_timeout', 6000);
+```
+
 **Initialization**
 ```php
 $fmtc = new Fmtc([
