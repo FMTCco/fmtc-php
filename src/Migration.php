@@ -24,7 +24,7 @@ class Migration
 			DB::schema()->create('categories', function($table)
 			{
 				$table->increments('id');
-				$table->string('cSlug', 27);
+				$table->string('cSlug', 27)->unique();
 				$table->string('cName', 29);
 				$table->integer('nParentID')->unsigned();
 				$table->string('cParent', 18);
@@ -39,7 +39,7 @@ class Migration
 		if (! DB::schema()->hasTable('types')) {
 			DB::schema()->create('types', function($table) {
 				$table->increments('id');
-				$table->string('cSlug', 27);
+				$table->string('cSlug', 27)->unique();
 				$table->string('cName', 29);
 				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
@@ -52,9 +52,9 @@ class Migration
 		if (! DB::schema()->hasTable('deals')) {
 			DB::schema()->create('deals', function($table) {
 				$table->increments('id');
-				$table->integer('nCouponID');
+				$table->integer('nCouponID')->index();
 				$table->string('cMerchant', 15);
-				$table->integer('nMerchantID');
+				$table->integer('nMerchantID')->index();
 				$table->integer('nMasterMerchantID');
 				$table->string('cNetwork', 3);
 				$table->string('cStatus', 7);
@@ -66,10 +66,11 @@ class Migration
 				$table->string('dtEndDate', 25);
 				$table->string('cLastUpdated', 25);
 				$table->string('cCreated', 25);
-				$table->string('cAffiliateURL', 255);
-				$table->string('cDirectURL', 255);
-				$table->string('cSkimlinksURL',255);
-				$table->string('cFMTCURL', 255);
+				$table->text('cAffiliateURL');
+				$table->text('cDirectURL');
+				$table->text('cSkimlinksURL');
+				$table->text('cFMTCURL');
+				$table->text('cPixelHTML');
 				$table->decimal('fSalePrice', 6, 2);
 				$table->decimal('fWasPrice', 6, 2);
 				$table->decimal('fDiscount', 5, 2);
@@ -94,6 +95,7 @@ class Migration
 				$table->string('cCategorySlug', 50);
 				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+				$table->index('nCouponID','cCategorySlug');
 			});
 		}
 	}
@@ -107,6 +109,7 @@ class Migration
 				$table->string('cTypeSlug', 50);
 				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+				$table->index('nCouponID','cCategorySlug');
 			});
 		}
 	}
@@ -116,7 +119,7 @@ class Migration
 		if (! DB::schema()->hasTable('merchants')) {
 			DB::schema()->create('merchants', function($table) {
 				$table->increments('id');
-				$table->integer('nMerchantID');
+				$table->integer('nMerchantID')->index();
 				$table->integer('nMasterMerchantID');
 				$table->integer('nSkimlinksID');
 				$table->string('cName', 20);
@@ -126,10 +129,10 @@ class Migration
 				$table->integer('bDual');
 				$table->string('aDualMerchants');
 				$table->integer('nParentMerchantID');
-				$table->string('cAffiliateURL', 82);
-				$table->string('cSkimlinksURL', 108);
-				$table->string('cFMTCURL', 55);
-				$table->string('cHomepageURL', 33);
+				$table->text('cAffiliateURL');
+				$table->text('cSkimlinksURL');
+				$table->text('cFMTCURL');
+				$table->string('cHomepageURL', 255);
 				$table->string('cStatus', 6);
 				$table->string('dtCreated', 25);
 				$table->string('dtLastUpdated', 25);
@@ -141,7 +144,7 @@ class Migration
 				$table->string('cPrimaryCategory', 20);
 				$table->string('aCategories');
 				$table->integer('bMobileCertified');
-				$table->string('aLogos');
+				$table->text('aLogos');
 				$table->string('aPaymentOptions');
 				$table->string('cCustomMerchantLogo', 10);
 				$table->string('cCustomMerchantDescription', 10);
