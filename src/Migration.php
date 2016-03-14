@@ -27,6 +27,7 @@ class Migration
 				$table->string('cSlug', 27)->unique();
 				$table->string('cName', 29);
 				$table->integer('nParentID')->unsigned();
+				$table->boolean('bHoliday')->index();
 				$table->string('cParent', 18);
 				$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 				$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
