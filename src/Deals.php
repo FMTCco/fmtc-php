@@ -93,7 +93,7 @@ class Deals
 	public function getBaseQuery($limit = false, $offset = 0)
 	{
 		$query = DB::table('deals')
-					->select(DB::raw('fmtc_merchants.*,fmtc_deals.*'))
+					->select(DB::raw('fmtc_merchants.*, fmtc_deals.*'))
 					->join('merchants', 'deals.nMerchantID', '=', 'merchants.nMerchantID')
 					->where('dtEndDate', '>=', date('Y-m-d H:i:s'))
 					->orderBy('fRating', 'desc');
