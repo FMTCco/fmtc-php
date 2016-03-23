@@ -54,7 +54,7 @@ class Migration
 			DB::schema()->create('deals', function($table) {
 				$table->increments('id');
 				$table->integer('nCouponID')->index();
-				$table->string('cMerchant', 15);
+				$table->string('cMerchant', 255);
 				$table->integer('nMerchantID')->index();
 				$table->integer('nMasterMerchantID');
 				$table->string('cNetwork', 3);
