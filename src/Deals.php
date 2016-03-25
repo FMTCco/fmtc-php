@@ -58,6 +58,17 @@ class Deals
 		return $this->formatDealsForReturn($deals);
 	}
 
+	public function getCountByMerchant($id, $limit = false, $offset = 0)
+        {
+                $query = $this->getBaseQuery($limit, $offset);
+
+		$count = $query->select(DB::raw('count(*) as deal_count'))
+					->where('deals.nMerchantID', $id)
+					->first();
+
+                return $count;
+        }
+
 	public function getByMerchant($id, $limit = false, $offset = 0)
 	{
 		$query = $this->getBaseQuery($limit, $offset);
