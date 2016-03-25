@@ -66,7 +66,7 @@ class Deals
 					->where('deals.nMerchantID', $id)
 					->first();
 
-                return $count
+                return $count;
         }
 
 	public function getByMerchant($id, $limit = false, $offset = 0)
