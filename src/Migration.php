@@ -123,7 +123,7 @@ class Migration
 				$table->integer('nMerchantID')->index();
 				$table->integer('nMasterMerchantID');
 				$table->integer('nSkimlinksID');
-				$table->string('cName', 20);
+				$table->string('cName', 255);
 				$table->string('cNetwork', 3);
 				$table->integer('cProgramID');
 				$table->string('cNetworkNotes', 32);
