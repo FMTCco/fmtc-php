@@ -9,7 +9,7 @@ This is the official php package to interface with FMTC's API.
 
 **Installation**
 ```php
-composer require fmtcco/fmtc-php
+composer require fmtc/fmtc-php
 ```
 
 **Requirements**
