@@ -15,9 +15,9 @@ class Deals
 		return $deal;
 	}
 
-	public function all($limit = false, $offset = 0, $order = 'rating')
+	public function all($limit = false, $offset = 0, $orderField = 'fRating', $desc = true)
 	{
-		$query = $this->getBaseQuery($limit, $offset, $order);
+		$query = $this->getBaseQuery($limit, $offset, $orderField, $desc);
 
 		// fetch all deals
 		$deals = $query->get();
@@ -36,9 +36,9 @@ class Deals
                 return $count;
         }
 
-	public function getByCategorySlug($slug, $limit = false, $offset = 0, $order = 'rating')
+	public function getByCategorySlug($slug, $limit = false, $offset = 0, $orderField = 'fRating', $desc = true)
 	{
-		$query = $this->getBaseQuery($limit, $offset, $order);
+		$query = $this->getBaseQuery($limit, $offset, $orderField, $desc);
 
 		$deals = $query->where('deals_categories.cCategorySlug', $slug)
 					   ->join('deals_categories', 'deals_categories.nCouponID', '=', 'deals.nCouponID')
@@ -47,9 +47,9 @@ class Deals
 		return $this->formatDealsForReturn($deals);
 	}
 
-	public function getByTypeSlug($slug, $limit = false, $offset = 0, $order = 'rating')
+	public function getByTypeSlug($slug, $limit = false, $offset = 0, $orderField = 'fRating', $desc = true)
 	{
-		$query = $this->getBaseQuery($limit, $offset, $order);
+		$query = $this->getBaseQuery($limit, $offset, $orderField, $desc);
 
 		$deals = $query->where('deals_types.cTypeSlug', $slug)
 					   ->join('deals_types', 'deals_types.nCouponID', '=', 'deals.nCouponID')
@@ -69,18 +69,18 @@ class Deals
                 return $count;
         }
 
-	public function getByMerchant($id, $limit = false, $offset = 0, $order = 'rating')
+	public function getByMerchant($id, $limit = false, $offset = 0, $orderField = 'fRating', $desc = true)
 	{
-		$query = $this->getBaseQuery($limit, $offset, $order);
+		$query = $this->getBaseQuery($limit, $offset, $orderField, $desc);
 
 		$deals = $query->where('deals.nMerchantID', $id)->get();
 
 		return $this->formatDealsForReturn($deals);
 	}
 
-	public function getByMasterMerchant($id, $limit = false, $offset = 0, $order = 'rating')
+	public function getByMasterMerchant($id, $limit = false, $offset = 0, $orderField = 'fRating', $desc = true)
 	{
-		$query = $this->getBaseQuery($limit, $offset, $order);
+		$query = $this->getBaseQuery($limit, $offset, $orderField, $desc);
 
 		$deals = $query->where('nMasterMerchantID', $id)
 					->get();
@@ -88,9 +88,9 @@ class Deals
 		return $this->formatDealsForReturn($deals);
 	}
 
-	public function getBySearch($search, $limit = false, $offset = 0, $order = 'rating')
+	public function getBySearch($search, $limit = false, $offset = 0, $orderField = 'fRating', $desc = true)
 	{
-		$query = $this->getBaseQuery($limit, $offset, $order);
+		$query = $this->getBaseQuery($limit, $offset, $orderField, $desc);
 
 		$deals = $query->where(function($query) use ($search) {
 			$query->where('nCouponID', 'like', '%' . $search . '%')
@@ -101,16 +101,21 @@ class Deals
 		return $this->formatDealsForReturn($deals);
 	}
 
-	public function getBaseQuery($limit = false, $offset = 0, $order = 'rating')
+	public function getBaseQuery($limit = false, $offset = 0, $orderField = 'fRating', $desc = true)
 	{
 		$query = DB::table('deals')
 					->select(DB::raw('fmtc_merchants.*, fmtc_deals.*'))
 					->join('merchants', 'deals.nMerchantID', '=', 'merchants.nMerchantID')
 					->where('dtEndDate', '>=', date('Y-m-d H:i:s'));
 		
-		if ($order == 'expiration') {
-			$query->orderBy('dtEndDate', 'asc');
-		} else {
+		$order = 'asc';
+		if($desc) {
+			$order = 'desc';
+		}
+		
+		$query->orderBy($orderField, $order);
+
+		if($orderField !== 'fRating') {
 			$query->orderBy('fRating', 'desc');
 		}
 
