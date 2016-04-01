@@ -22,11 +22,11 @@ ini_set('default_socket_timeout', 6000);
 **Initialization**
 ```php
 $fmtc = new Fmtc\Fmtc([
-	'api_key' => [api_key],
-	'database' => [database],
-	'host' => [host],
-	'username' => [username],
-	'password' => [password]
+	'api_key' => 'api_key',
+	'database' => 'database',
+	'host' => 'host',
+	'username' => 'username',
+	'password' => 'password'
 ]);
 ```
 
