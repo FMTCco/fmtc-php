@@ -16,9 +16,9 @@ class Fmtc
 	/**
 	 * Initialize The Base Fmtc Class.
 	 */
-	public function __construct($config)
+	public function __construct($config, $container = null)
 	{
-		$this->establishConnection($config);
+		$this->establishConnection($config, $container);
 		$this->config = $config;
 	}
 
@@ -82,9 +82,9 @@ class Fmtc
 		return new Networks;
 	}
 
-	protected function establishConnection($config)
+	protected function establishConnection($config, $container)
 	{
-		$db = new DB;
+		$db = new DB($container);
 
 		$db->addConnection([
 		    'driver'    => 'mysql',
