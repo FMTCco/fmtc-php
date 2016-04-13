@@ -25,6 +25,14 @@ class Deals
 		return $this->formatDealsForReturn($deals);
 	}
 
+	public function starred($limit = false, $offset = 0, $orderField = 'fRating', $desc = true)
+	{
+		$starred = true;
+		$query = $this->getBaseQuery($limit, $offset, $orderField, $desc, $starred);
+		$deals = $query->get();
+		return $this->formatDealsForReturn($deals);
+	}
+
 	public function getCountByCategorySlug($slug, $limit = false, $offset = 0)
 	{
                 $query = $this->getBaseQuery($limit, $offset);
@@ -101,18 +109,18 @@ class Deals
 		return $this->formatDealsForReturn($deals);
 	}
 
-	public function getBaseQuery($limit = false, $offset = 0, $orderField = 'fRating', $desc = true)
+	public function getBaseQuery($limit = false, $offset = 0, $orderField = 'fRating', $desc = true, $starred = false)
 	{
 		$query = DB::table('deals')
 					->select(DB::raw('fmtc_merchants.*, fmtc_deals.*'))
 					->join('merchants', 'deals.nMerchantID', '=', 'merchants.nMerchantID')
 					->where('dtEndDate', '>=', date('Y-m-d H:i:s'));
 		
-		$order = 'asc';
-		if($desc) {
-			$order = 'desc';
+		if($starred) {
+			$query->where('bStarred', 1);
 		}
 		
+		$order = $desc ? 'desc' : 'asc';
 		$query->orderBy($orderField, $order);
 
 		if($orderField !== 'fRating') {
