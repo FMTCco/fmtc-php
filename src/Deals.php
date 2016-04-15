@@ -114,6 +114,7 @@ class Deals
 		$query = DB::table('deals')
 					->select(DB::raw('fmtc_merchants.*, fmtc_deals.*'))
 					->join('merchants', 'deals.nMerchantID', '=', 'merchants.nMerchantID')
+					->where('dtStartDate', '<=', date('Y-m-d H:i:s'))
 					->where('dtEndDate', '>=', date('Y-m-d H:i:s'));
 		
 		if($starred) {
