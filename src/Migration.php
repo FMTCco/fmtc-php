@@ -62,7 +62,7 @@ class Migration
 				$table->string('cLabel', 250);
 				$table->string('cImage', 88);
 				$table->string('cRestrictions', 100);
-				$table->string('cCode', 8);
+				$table->string('cCode', 100);
 				$table->string('dtStartDate', 25);
 				$table->string('dtEndDate', 25);
 				$table->string('cLastUpdated', 25);
