@@ -61,7 +61,13 @@ abstract class Feed
 
 	protected function getJson($url)
 	{
-		return file_get_contents($url);
+		// Set a timeout of 5 hours.
+		$streamContext = stream_context_create(array(
+			'http' => array(
+				'timeout' => 18000
+			)
+		));
+		return file_get_contents($url, 0, $streamContext);
 	}
 
 	protected function formatForInsertion($row, $columns)
